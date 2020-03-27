@@ -71,6 +71,7 @@ val = firstName.charAt('2');
 
 console.log(val);
 
+//using slice in string
 val = firstName.slice(0, 2);
 
 console.log('firstname: ', val);
@@ -170,3 +171,30 @@ const player = {
 for(let x in player){
     console.log(`${x} : ${player[x]}`)
 }
+
+//windows object
+
+//for innerheight and innerwidth
+window.innerHeight;
+window.innerWidth;
+
+//for outer height and outerwidth
+window.outerHeight;
+window.outerWidth;
+
+//for scroll points
+window.scrollX; /* for horizontal scrolling */
+window.scrollY; /* for vertical scrolling */ 
+
+//location object
+ window.location;
+
+ //redirect
+// window.location.href = 'http://google.com';
+
+ //reload
+//  window.location.reload();
+
+//Navigator object
+window.navigator;
+window.navigator.platform; /* used for platform specific task */
