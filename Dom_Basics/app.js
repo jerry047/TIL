@@ -43,7 +43,7 @@ console.log(val);
 
 // manipulating dom using single selectors
 
-document.getElementById()
+// document.getElementById()
 
 console.log(document.getElementById('task-title'));
 
@@ -64,7 +64,7 @@ taskTitle.textContent = 'Task List';
 taskTitle.innerText = 'My Tasks';
 taskTitle.innerHTML = '<span style="color:red">Task List</span>';
 
-document.querySelector()
+// document.querySelector()
 
 console.log(document.querySelector('#task-title'));
 console.log(document.querySelector('.card-title'));
@@ -113,9 +113,9 @@ lis.forEach(function(li, index){
 console.log(lis);
 
 // document.querySelectorAll
-const items = document.querySelectorAll('ul.collection li.collection-item');
+const itemss = document.querySelectorAll('ul.collection li.collection-item');
 
-items.forEach(function(item, index){
+itemss.forEach(function(item, index){
     item.textContent = `${index}: Hello`;
 });
 
@@ -136,19 +136,19 @@ console.log(items);
 
 // DOM traversing
 
-let val;
+ let val1;
 
 const list = document.querySelector('ul.collection');
 const listItem = document.querySelector('li.collection-item:first-child');
 
-val = listItem;
-val = list;
+val1 = listItem;
+val1 = list;
 
 // Get child nodes
-val = list.childNodes;
-val = list.childNodes[0];
-val = list.childNodes[0].nodeName;
-val = list.childNodes[3].nodeType;
+val1 = list.childNodes;
+val1 = list.childNodes[0];
+val1 = list.childNodes[0].nodeName;
+val1 = list.childNodes[3].nodeType;
 
 // 1 - Element
 // 2 - Attribute (deprecated)
@@ -159,13 +159,13 @@ val = list.childNodes[3].nodeType;
 
 
 // Get children element nodes
-val = list.children;
-val = list.children[1];
-console.log(val);
+val1 = list.children;
+val1 = list.children[1];
+console.log(val1);
 
 list.children[1].textContent = 'Hello';
 // Children of children
-list.children[3].children[0].id = 'test-link';
+// list.children[3].children[0].id = 'test-link';
 val = list.children[3].children[0];
 console.log(val);
 
@@ -263,32 +263,32 @@ const cardAction = document.querySelector('.card-action');
 cardAction.replaceChild(newHeading, oldHeading);
 
 // REMOVE ELEMENT
-const lis = document.querySelectorAll('li');
-const list = document.querySelector('ul');
+const liss = document.querySelectorAll('li');
+const lists = document.querySelector('ul');
 
 // Remove list item
-lis[0].remove();
+liss[0].remove();
 
 // Remove child element
-list.removeChild(lis[3]);
+lists.removeChild(lis[3]);
 
 // CLASSES & ATTR
 const firstLi = document.querySelector('li:first-child');
-const link = firstLi.children[0];
+const links = firstLi.children[0];
 
-let val;
+let value;
 
 // Classes
-val = link.className;
-val = link.classList;
-val = link.classList[0];
-link.classList.add('test');
-link.classList.remove('test');
-val = link;
+value = links.className;
+value = links.classList;
+value = links.classList[0];
+links.classList.add('test');
+links.classList.remove('test');
+value = links;
 
 // Attributes
-val = link.getAttribute('href');
-console.log(val);
+value = link.getAttribute('href');
+console.log(value);
 
 val = link.setAttribute('href', 'http://google.com');
 link.setAttribute('title', 'Google'); 
