@@ -137,8 +137,10 @@ for(let x in player){
 ```
 
 ### location object
--to reload the page <br>
-`window.location.reload();'
+- to reload the page <br>
+`window.location.reload();`
+- to redirect <br>
+`window.location.href = 'http://google.com';`
 
 ### Navigator object
 ```javascript
