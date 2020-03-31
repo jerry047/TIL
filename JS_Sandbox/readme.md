@@ -137,7 +137,7 @@ for(let x in player){
 ```
 
 ### location object
--to reload the page
+-to reload the page <br>
 `window.location.reload();'
 
 ### Navigator object
