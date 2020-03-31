@@ -30,3 +30,26 @@ function calculateResults(e){
 
     e.preventDefault();
 }
+
+// Creating showError function
+function showError(error){
+
+    //Create a div
+    const errorDiv = document.createElement('div');
+
+    //Get Elements
+    const card = document.querySelector('.card');
+    const heading = document.querySelector('.heading');
+
+    //Add cass to div
+    errorDiv.className = 'alert alert-danger';
+
+    //Create text node and append to div
+    errorDiv.appendChild(document.createTextNode(error));
+
+    //Insert error above heading
+    card.insertBefore(errorDiv, heading);
+
+    //Clear error after three seconds
+    setTimeout(clearError, 3000);
+}
