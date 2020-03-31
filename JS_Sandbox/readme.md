@@ -124,7 +124,7 @@ const ids = users.map(function(user){
 console.log(ids);
 ```
 - for in loops for object
-```javascipt
+```javascript
 const player = {
     firstName: 'Zion',
     lastName: 'WilliamSon',
