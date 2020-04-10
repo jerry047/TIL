@@ -32,6 +32,29 @@ const StorageCntrl = (function(){
                 items = JSON.parse(localStorage.getItem('items'));
             }
             return items;
+         },
+         updateItemStorage: function (updatedItem) {
+            let items = JSON.parse(localStorage.getItem('items'));
+
+            items.forEach(function(item, index){
+                if(updatedItem.id ===item.id){
+                    items.splice(index, 1, updatedItem);
+                }
+            });
+            localStorage.setItem('items', JSON.stringify(items));
+         },
+         deleteItemFromStorage: function(id) {
+            let items = JSON.parse(localStorage.getItem('items'));
+
+            items.forEach(function(item, index){
+                if(id ===item.id){
+                    items.splice(index, 1);
+                }
+            });
+            localStorage.setItem('items', JSON.stringify(items));
+         },
+         clearAllItemsFromStorage: function() {
+             localStorage.removeItem('items');
          }
     }
 })();
@@ -379,6 +402,9 @@ const App = (function(ItemCntrl, StorageCntrl, UICntrl) {
         //Add total calories to UI
         UICntrl.showTotalCalories(totalCalories);
 
+        //Update local Storage
+        StorageCntrl.updateItemStorage(updatedItem);
+
         UICntrl.clearEditState();
 
         e.preventDefault();
@@ -401,12 +427,15 @@ const App = (function(ItemCntrl, StorageCntrl, UICntrl) {
         //Add total calories to UI
         UICntrl.showTotalCalories(totalCalories);
 
+        //Delete from LS
+        StorageCntrl.deleteItemFromStorage(currentItem.id);
+
         UICntrl.clearEditState();
 
         e.preventDefault();
      }
 
-     //Clear items event
+     //Clear All items event
      const clearAllItemsClick = function(){
          //Delete All items from data structure
          ItemCntrl.clearAllItems();
@@ -419,6 +448,9 @@ const App = (function(ItemCntrl, StorageCntrl, UICntrl) {
 
          //Remove from UI
          UICntrl.removeItems();
+
+         //Clear from LS
+         StorageCntrl.clearAllItemsFromStorage();
 
          //Hide UL
          UICntrl.hideList(); 
