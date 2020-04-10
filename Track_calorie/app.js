@@ -67,11 +67,10 @@ const UICntrl = (function() {
             let html = '';
             items.forEach(function(item) {
                 html += `<li class="collection-item" id="item-${item.id}">
-                <strong>${item.name}: <em>${item.calories} Calories</em>
+                <strong>${item.name}: </strong> <em>${item.calories} Calories</em>
                      <a href="#" class="secondary-content">
                         <i class="edit-item fa fa-pencil"></i>
                      </a>
-                    </strong>
             </li>`;
             })
 
@@ -84,6 +83,26 @@ const UICntrl = (function() {
                 calories: document.querySelector(UISelectors.itemCaloriesInput).value
             }
           },
+          addListItem: function (item) { 
+            //Create li element
+            const li = document.createElement('li');
+            //Add class
+            li.className = 'collection-item';
+            //Add Id
+            li.id = `item-${item.id}`;
+            //Add Html
+            li.innerHTML = `<strong>${item.name}: </strong> <em>${item.calories} Calories</em>
+            <a href="#" class="secondary-content">
+               <i class="edit-item fa fa-pencil"></i>
+            </a>
+            `;
+            //Insert item
+            document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li)
+           },
+           clearInput: function() {
+            document.querySelector(UISelectors.itemNameInput).value = '';
+            document.querySelector(UISelectors.itemCaloriesInput).value = '';
+           },
           getSelectors: function () { 
               return UISelectors;
            }
@@ -111,6 +130,10 @@ const App = (function(ItemCntrl, UICntrl) {
         if(input.name !== '' && input.calories !== '') {
             //Add item 
             const newItem = ItemCntrl.addItem(input.name, input.calories);
+            //Add item to UI List
+            UICntrl.addListItem(newItem);
+            //Clear input fields
+            UICntrl.clearInput();
         }
 
         e.preventDefault();
