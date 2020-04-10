@@ -1,4 +1,40 @@
 //Storage Controller
+const StorageCntrl = (function(){
+
+    //Public Methods
+    return {
+        storeItem: function(item){
+            let items;
+
+            //Check if any items in LS
+            if(localStorage.getItem('items') === null) {
+                items = [];
+                //Push new item 
+                items.push(item);
+                //Set LS
+                localStorage.setItem('items', JSON.stringify(items));
+            } else {
+                //Get data present in LS
+                items = JSON.parse(localStorage.getItem('items'));
+
+                //Push the new item
+                items.push(item);
+
+                //Reset LS
+                localStorage.setItem('items', JSON.stringify(items));
+            }
+        },
+        getItemsFromStorage: function () { 
+            let items;
+            if(localStorage.getItem('items') === null){
+                 items = [];
+            } else {
+                items = JSON.parse(localStorage.getItem('items'));
+            }
+            return items;
+         }
+    }
+})();
 
 //Item Controller
 const ItemCntrl = (function() {
@@ -11,11 +47,12 @@ const ItemCntrl = (function() {
 
     //Data Structure / State
     const data = {
-        items: [
-            // {id: 0, name: 'Steak Dinner', calories: '1200'},
-            // {id: 1, name: 'Cookie', calories: '400'},
-            // {id: 2, name: 'Eggs', calories: '300'}
-        ],
+        // items: [
+        //     // {id: 0, name: 'Steak Dinner', calories: '1200'},
+        //     // {id: 1, name: 'Cookie', calories: '400'},
+        //     // {id: 2, name: 'Eggs', calories: '300'}
+        // ],
+        items: StorageCntrl.getItemsFromStorage(),
         currentItem: null,
         totalCalories: 0
     }
@@ -236,7 +273,7 @@ const UICntrl = (function() {
 })();
 
 //App Controller
-const App = (function(ItemCntrl, UICntrl) {
+const App = (function(ItemCntrl, StorageCntrl, UICntrl) {
     //Load event listeners
     const loadEventListeners = function () {
         //Get UISelectors
@@ -288,6 +325,9 @@ const App = (function(ItemCntrl, UICntrl) {
 
             //Add total calories to UI
             UICntrl.showTotalCalories(totalCalories);
+
+            //Store in local Storage
+            StorageCntrl.storeItem(newItem);
 
             //Clear input fields
             UICntrl.clearInput();
@@ -413,7 +453,7 @@ const App = (function(ItemCntrl, UICntrl) {
         }
     }
     
-})(ItemCntrl, UICntrl);
+})(ItemCntrl, StorageCntrl, UICntrl);
 
 //Initialize app
 App.init();
